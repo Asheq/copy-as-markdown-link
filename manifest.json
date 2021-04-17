@@ -1,31 +1,33 @@
 {
-
-  "description": "Adds a browser action icon to the toolbar. Click the button to choose a beast. The active tab's body content is then replaced with a picture of the chosen beast. See https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Examples#beastify",
+  "description": "Adds a page action icon to the address bar. Click the button to copy the current URL to the clipboard in markdown format: [Title](URL).",
   "manifest_version": 2,
-  "name": "Beastify",
+  "name": "Copy as Markdown Link",
   "version": "1.0",
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
-  "icons": {
-    "48": "icons/beasts-48.png"
+  "homepage_url": "https://github.com/Asheq/copy-as-markdown-link",
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "page_action": {
+    "default_icon": "icons/off.svg"
+  },
+
+  "commands": {
+    "copy": {
+      "suggested_key": { "default": "Ctrl+Shift+Y" },
+      "description": "Copy as Markdown Link"
+    },
+    "paste": {
+      "suggested_key": { "default": "Ctrl+Shift+U" },
+      "description": "Paste link as new tab"
+    }
   },
 
   "permissions": [
-    "activeTab"
-  ],
-
-  "browser_action": {
-    "default_icon": "icons/beasts-32.png",
-    "theme_icons": [{
-        "light": "icons/beasts-32-light.png",
-        "dark": "icons/beasts-32.png",
-        "size": 32
-    }],
-    "default_title": "Beastify",
-    "default_popup": "popup/choose_beast.html"
-  },
-
-  "web_accessible_resources": [
-    "beasts/*.jpg"
+    "tabs",
+    "clipboardWrite",
+    "clipboardRead",
+    "search"
   ]
-
 }
